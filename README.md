@@ -21,7 +21,7 @@ This is a minimal CRUD (Create, Read, Update, Delete) web application built usin
 
 ## Prerequisites
 1. **JDK 21**: Ensure JDK 21 is installed and configured in your environment.
-2. **MySQL**: Install MySQL and create a database named `crud_db`.
+2. **MySQL**: Install MySQL and create a database named `testdb`.
 3. **Tomcat 11**: Download and configure Apache Tomcat 11.
 4. **Maven**: Ensure Maven is installed for dependency management.
 5. **IntelliJ IDEA**: Recommended IDE for development and deployment.
