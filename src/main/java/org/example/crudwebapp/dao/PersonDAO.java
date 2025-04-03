@@ -8,8 +8,25 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 
 public class PersonDAO {
-    private static final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("myPU");
+    private static final EntityManagerFactory emf;
+
+    static {
+        EntityManagerFactory factory = null;
+        boolean connected = false;
+        while (!connected) {
+            try {
+                factory = Persistence.createEntityManagerFactory("myPU");
+                factory.createEntityManager().close();
+                connected = true;
+            } catch (Exception e) {
+                System.out.println("MySQL pas encore prêt... nouvelle tentative dans 3s");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException ignored) {}
+            }
+        }
+        emf = factory;
+    }
 
     public void create(Person person) {
         EntityManager em = emf.createEntityManager();
